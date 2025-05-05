@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBM - Create Account</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FF3A4C',secondary:'#FF8A30'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb;
+}
+.password-input {
+  position: relative;
+}
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  cursor: pointer;
+}
+.password-strength {
+  height: 4px;
+  border-radius: 2px;
+  background-color: #e5e7eb;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.password-strength-bar {
+  height: 100%;
+  width: 0;
+  transition: width 0.3s, background-color 0.3s;
+}
+.password-requirements {
+  display: none;
+  margin-top: 8px;
+}
+.requirement {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.requirement-icon {
+  margin-right: 8px;
+  color: #d1d5db;
+}
+.requirement-met .requirement-icon {
+  color: #10b981;
+}
+</style>
+</head>
+<body>
+<div class="min-h-screen flex flex-col">
+  <!-- Header with Back Link -->
+  <header class="w-full bg-white shadow-sm py-4">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <a href="index.html">
+        <div class="w-6 h-6 flex items-center justify-center mr-2">
+          <i class="ri-arrow-left-line"></i>
+        </div>
+        <span>Back to Sign In</span>
+      </a>
+      <div class="flex justify-center flex-1">
+        <a href="index.html"><img src="logo-no-background.png" alt="SBM Logo" class="h-10"></a>
+      </div>
+      <div class="w-24"></div> <!-- Spacer to balance the header -->
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center py-12 px-4">
+    <div class="w-full max-w-md">
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-8">
+          <h1 class="text-2xl font-bold text-gray-900 mb-6 text-center">Create Account</h1>
+          <form id="registerForm">
+            <!-- Full Name Field -->
+            <div class="mb-4">
+              <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" id="fullName" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-gray-900" placeholder="Enter your full name">
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-gray-900" placeholder="Enter your email">
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="mb-4">
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-gray-500 text-xs">(Optional)</span></label>
+              <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-gray-900" placeholder="Enter your phone number">
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-4">
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <div class="password-input">
+                <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-gray-900" placeholder="Create a password">
+                <div class="password-toggle w-5 h-5 flex items-center justify-center">
+                  <i class="ri-eye-off-line"></i>
+                </div>
+              </div>
+              <div class="password-strength">
+                <div class="password-strength-bar"></div>
+              </div>
+              <p class="text-xs mt-1 password-strength-text text-gray-500">Password strength: Too weak</p>
+              <div class="password-requirements text-xs text-gray-600">
+                <div class="requirement" data-requirement="length">
+                  <span class="requirement-icon w-4 h-4 flex items-center justify-center">
+                    <i class="ri-checkbox-circle-line"></i>
+                  </span>
+                  <span>At least 8 characters</span>
+                </div>
+                <div class="requirement" data-requirement="uppercase">
+                  <span class="requirement-icon w-4 h-4 flex items-center justify-center">
+                    <i class="ri-checkbox-circle-line"></i>
+                  </span>
+                  <span>At least 1 uppercase letter</span>
+                </div>
+                <div class="requirement" data-requirement="lowercase">
+                  <span class="requirement-icon w-4 h-4 flex items-center justify-center">
+                    <i class="ri-checkbox-circle-line"></i>
+                  </span>
+                  <span>At least 1 lowercase letter</span>
+                </div>
+                <div class="requirement" data-requirement="number">
+                  <span class="requirement-icon w-4 h-4 flex items-center justify-center">
+                    <i class="ri-checkbox-circle-line"></i>
+                  </span>
+                  <span>At least 1 number</span>
+                </div>
+                <div class="requirement" data-requirement="special">
+                  <span class="requirement-icon w-4 h-4 flex items-center justify-center">
+                    <i class="ri-checkbox-circle-line"></i>
+                  </span>
+                  <span>At least 1 special character</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="mb-6">
+              <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              <div class="password-input">
+                <input type="password" id="confirmPassword" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-gray-900" placeholder="Confirm your password">
+                <div class="password-toggle-confirm w-5 h-5 flex items-center justify-center">
+                  <i class="ri-eye-off-line"></i>
+                </div>
+              </div>
+              <p id="passwordMatch" class="text-xs mt-1 hidden">Passwords match</p>
+            </div>
+            <!-- Create Account Button -->
+            <button type="submit" class="w-full bg-primary text-white py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Create Account</button>
+          </form>
+
+          <!-- Divider -->
+          <div class="flex items-center my-6">
+            <div class="flex-1 border-t border-gray-300"></div>
+            <span class="px-4 text-sm text-gray-500">or</span>
+            <div class="flex-1 border-t border-gray-300"></div>
+          </div>
+          <!-- Sign In Link -->
+          <div class="text-center">
+            <p class="text-gray-700 mb-4">Already have an account?</p>
+            <a href="https://readdy.ai/home/886a70f5-4758-4052-9975-f126478c1e34/4c15c713-60e8-4af8-ac90-01a7da26e1f0" data-readdy="true" class="block w-full bg-white text-primary border border-primary py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary/5 transition-all">Sign In</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Information -->
+      <div class="mt-8 text-center text-sm text-gray-600">
+        <p>By creating an account, you agree to our <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6 border-t">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-center text-center md:justify-between">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 Subscription BD Movie. All rights reserved.</p>
+        <div class="flex space-x-6 justify-center">
+          <a href="#" class="text-gray-500 hover:text-primary text-sm">Terms</a>
+          <a href="#" class="text-gray-500 hover:text-primary text-sm">Privacy</a>
+          <a href="#" class="text-gray-500 hover:text-primary text-sm">Help</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Password visibility toggle
+  const passwordToggle = document.querySelector('.password-toggle');
+  const passwordInput = document.getElementById('password');
+  
+  passwordToggle.addEventListener('click', function() {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    
+    // Toggle icon
+    const icon = this.querySelector('i');
+    if (type === 'password') {
+      icon.classList.remove('ri-eye-line');
+      icon.classList.add('ri-eye-off-line');
+    } else {
+      icon.classList.remove('ri-eye-off-line');
+      icon.classList.add('ri-eye-line');
+    }
+  });
+  
+  // Confirm password visibility toggle
+  const confirmPasswordToggle = document.querySelector('.password-toggle-confirm');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  
+  confirmPasswordToggle.addEventListener('click', function() {
+    const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmPasswordInput.setAttribute('type', type);
+    
+    // Toggle icon
+    const icon = this.querySelector('i');
+    if (type === 'password') {
+      icon.classList.remove('ri-eye-line');
+      icon.classList.add('ri-eye-off-line');
+    } else {
+      icon.classList.remove('ri-eye-off-line');
+      icon.classList.add('ri-eye-line');
+    }
+  });
+  
+  // Password strength indicator
+  const strengthBar = document.querySelector('.password-strength-bar');
+  const strengthText = document.querySelector('.password-strength-text');
+  const passwordRequirements = document.querySelector('.password-requirements');
+  
+  passwordInput.addEventListener('focus', function() {
+    passwordRequirements.style.display = 'block';
+  });
+  
+  passwordInput.addEventListener('input', function() {
+    const password = this.value;
+    const requirements = {
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      number: /[0-9]/.test(password),
+      special: /[^A-Za-z0-9]/.test(password)
+    };
+    
+    // Update requirement indicators
+    Object.keys(requirements).forEach(req => {
+      const reqElement = document.querySelector(`[data-requirement="${req}"]`);
+      if (requirements[req]) {
+        reqElement.classList.add('requirement-met');
+      } else {
+        reqElement.classList.remove('requirement-met');
+      }
+    });
+    
+    // Calculate strength
+    const metRequirements = Object.values(requirements).filter(Boolean).length;
+    let strength = 0;
+    let strengthClass = '';
+    let strengthMessage = '';
+    
+    if (password.length === 0) {
+      strength = 0;
+      strengthClass = '';
+      strengthMessage = 'Too weak';
+    } else if (metRequirements <= 2) {
+      strength = 25;
+      strengthClass = 'bg-red-500';
+      strengthMessage = 'Weak';
+    } else if (metRequirements === 3) {
+      strength = 50;
+      strengthClass = 'bg-orange-500';
+      strengthMessage = 'Medium';
+    } else if (metRequirements === 4) {
+      strength = 75;
+      strengthClass = 'bg-yellow-500';
+      strengthMessage = 'Strong';
+    } else {
+      strength = 100;
+      strengthClass = 'bg-green-500';
+      strengthMessage = 'Very strong';
+    }
+    
+    // Update UI
+    strengthBar.style.width = `${strength}%`;
+    strengthBar.className = 'password-strength-bar ' + strengthClass;
+    strengthText.textContent = `Password strength: ${strengthMessage}`;
+    
+    // Check if passwords match
+    checkPasswordsMatch();
+  });
+  
+  // Check if passwords match
+  const confirmPassword = document.getElementById('confirmPassword');
+  const passwordMatch = document.getElementById('passwordMatch');
+  
+  function checkPasswordsMatch() {
+    if (confirmPassword.value.length === 0) {
+      passwordMatch.classList.add('hidden');
+      return;
+    }
+    
+    if (passwordInput.value === confirmPassword.value) {
+      passwordMatch.textContent = 'Passwords match';
+      passwordMatch.classList.remove('hidden', 'text-red-500');
+      passwordMatch.classList.add('text-green-500');
+    } else {
+      passwordMatch.textContent = 'Passwords do not match';
+      passwordMatch.classList.remove('hidden', 'text-green-500');
+      passwordMatch.classList.add('text-red-500');
+    }
+  }
+  
+  confirmPassword.addEventListener('input', checkPasswordsMatch);
+  
+  // Form submission
+  const registerForm = document.getElementById('registerForm');
+  registerForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Validate form
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const password = passwordInput.value;
+    const confirmPasswordValue = confirmPassword.value;
+    
+    let isValid = true;
+    
+    if (!fullName) {
+      isValid = false;
+      // Show error for full name
+    }
+    
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      isValid = false;
+      // Show error for email
+    }
+    
+    if (!password || password.length < 8) {
+      isValid = false;
+      // Show error for password
+    }
+    
+    if (password !== confirmPasswordValue) {
+      isValid = false;
+      // Show error for password match
+    }
+    
+    if (isValid) {
+      // Redirect to sign-in page after successful registration
+      window.location.href = "signin.html";
+    }
+  });
+});
+</script>
+</body>
+</html>

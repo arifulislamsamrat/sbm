@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBM - Subscription BD Movie</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FF3A4C',secondary:'#FF8A30'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Poppins', sans-serif;
+}
+.gradient-bg {
+background: linear-gradient(135deg, #FFD9D9 0%, #FFF5E9 100%);
+}
+.subscription-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 34px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #FF3A4C;
+}
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center">
+<img src="logo-no-background.png" alt="SBM Logo" class="h-12">
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a href="index.html" class="text-gray-800 hover:text-primary font-medium">Home</a>
+<a href="subscription.html"data-readdy="true"  class="text-gray-800 hover:text-primary font-medium">Subscriptions</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Special Offers</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">FAQ</a>
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Contact</a>
+</nav>
+<div class="flex items-center space-x-4">
+<a href="#" class="text-gray-800 hover:text-primary">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-search-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-gray-800 hover:text-primary">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-shopping-cart-line ri-xl"></i>
+</div>
+</a>
+<a href="signin.html" data-readdy="true" class="text-gray-800 hover:text-primary font-medium mr-4">Sign In</a>
+<a href="signup.html" class="bg-primary text-white px-5 py-2 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Sign Up</a>
+</div>
+<div class="md:hidden flex items-center">
+<button class="text-gray-800">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line ri-xl"></i>
+</div>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden h-[600px]">
+<div class="slider-container relative w-full h-full">
+<div class="slides flex transition-transform duration-500 h-full">
+<div class="slide min-w-full h-full relative" style="background-image: url('https://readdy.ai/api/search-image?query=A%20cinematic%20streaming%20service%20hero%20image%20showing%20a%20modern%20living%20room%20with%20a%20large%20TV%20displaying%20premium%20content.%20The%20scene%20has%20warm%20lighting%20and%20premium%20furniture%2C%20creating%20a%20cozy%20atmosphere.%20High-end%20home%20entertainment%20setup%20with%20ambient%20lighting&width=1600&height=600&seq=123456&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent"></div>
+<div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Premium Streaming Subscriptions at Unbeatable Prices</h1>
+<p class="text-lg md:text-xl text-gray-700 mb-8">Access Netflix, Amazon Prime, YouTube Premium, and more with our affordable subscription plans. Save up to 70% on regular prices.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="#subscriptions" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all text-center">View Plans</a>
+<a href="#how-it-works" class="bg-white text-gray-800 border border-gray-300 px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-gray-50 transition-all text-center">How It Works</a>
+</div>
+</div>
+</div>
+</div>
+<div class="slide min-w-full h-full relative" style="background-image: url('https://readdy.ai/api/search-image?query=A%20premium%20entertainment%20setup%20with%20multiple%20streaming%20devices%20and%20smart%20home%20integration.%20Modern%20minimalist%20interior%20with%20accent%20lighting%20and%20streaming%20content%20displayed%20on%20multiple%20screens.%20Professional%20photography%20with%20dramatic%20lighting&width=1600&height=600&seq=123457&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent"></div>
+<div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">One Subscription, Multiple Platforms</h1>
+<p class="text-lg md:text-xl text-gray-700 mb-8">Get access to all your favorite streaming platforms with a single subscription. Enjoy seamless entertainment across devices.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="#subscriptions" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all text-center">View Plans</a>
+<a href="#how-it-works" class="bg-white text-gray-800 border border-gray-300 px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-gray-50 transition-all text-center">How It Works</a>
+</div>
+</div>
+</div>
+</div>
+<div class="slide min-w-full h-full relative" style="background-image: url('https://readdy.ai/api/search-image?query=A%20luxurious%20home%20theater%20setup%20with%20premium%20audio%20system%20and%20large%20screen%20displaying%20streaming%20content.%20Contemporary%20design%20with%20mood%20lighting%20and%20comfortable%20seating.%20Professional%20interior%20photography%20with%20attention%20to%20detail&width=1600&height=600&seq=123458&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent"></div>
+<div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Premium Entertainment, Affordable Prices</h1>
+<p class="text-lg md:text-xl text-gray-700 mb-8">Experience the best in streaming entertainment without breaking the bank. Start streaming today with our affordable plans.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="#subscriptions" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all text-center">View Plans</a>
+<a href="#how-it-works" class="bg-white text-gray-800 border border-gray-300 px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-gray-50 transition-all text-center">How It Works</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+<button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="0"></button>
+<button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="1"></button>
+<button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="2"></button>
+</div>
+</div>
+</section>
+<!-- Featured Platforms -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Premium Platforms We Offer</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+<div class="bg-white p-6 rounded shadow-sm w-full max-w-[150px] h-[100px] flex items-center justify-center">
+<div class="w-12 h-12 flex items-center justify-center mr-2">
+<i class="ri-netflix-fill ri-2x text-red-600"></i>
+</div>
+<span class="font-medium">Netflix</span>
+</div>
+<div class="bg-white p-6 rounded shadow-sm w-full max-w-[150px] h-[100px] flex items-center justify-center">
+<div class="w-12 h-12 flex items-center justify-center mr-2">
+<i class="ri-amazon-fill ri-2x text-blue-600"></i>
+</div>
+<span class="font-medium">Prime</span>
+</div>
+<div class="bg-white p-6 rounded shadow-sm w-full max-w-[150px] h-[100px] flex items-center justify-center">
+<div class="w-12 h-12 flex items-center justify-center mr-2">
+<i class="ri-youtube-fill ri-2x text-red-500"></i>
+</div>
+<span class="font-medium">YouTube</span>
+</div>
+<div class="bg-white p-6 rounded shadow-sm w-full max-w-[150px] h-[100px] flex items-center justify-center">
+<div class="w-12 h-12 flex items-center justify-center mr-2">
+<i class="ri-tv-fill ri-2x text-purple-600"></i>
+</div>
+<span class="font-medium">Hoichoi</span>
+</div>
+<div class="bg-white p-6 rounded shadow-sm w-full max-w-[150px] h-[100px] flex items-center justify-center">
+<div class="w-12 h-12 flex items-center justify-center mr-2">
+<i class="ri-tv-2-fill ri-2x text-green-600"></i>
+</div>
+<span class="font-medium">Binge</span>
+</div>
+<div class="bg-white p-6 rounded shadow-sm w-full max-w-[150px] h-[100px] flex items-center justify-center">
+<div class="w-12 h-12 flex items-center justify-center mr-2">
+<i class="ri-play-circle-fill ri-2x text-blue-500"></i>
+</div>
+<span class="font-medium">Sony LIV</span>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section id="how-it-works" class="py-16">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-lg shadow-sm text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-shopping-bag-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">1. Choose Your Plan</h3>
+<p class="text-gray-600">Select from our monthly, half-yearly, or yearly subscription plans for your favorite streaming platform.</p>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-sm text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-bank-card-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">2. Make Payment</h3>
+<p class="text-gray-600">Complete your payment securely using your preferred payment method and share transaction details.</p>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-sm text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-movie-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">3. Start Streaming</h3>
+<p class="text-gray-600">Receive your login credentials within 30 minutes and start enjoying your favorite content instantly.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Subscription Plans -->
+<section id="subscriptions" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-4">Subscription Plans</h2>
+<p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Choose from our flexible subscription options to access premium streaming services at discounted prices.</p>
+<div class="flex justify-center mb-10">
+<div class="bg-white rounded-full p-1 inline-flex shadow-sm">
+<button class="px-6 py-2 rounded-full bg-primary text-white !rounded-full whitespace-nowrap font-medium">Monthly</button>
+<button class="px-6 py-2 rounded-full text-gray-700 !rounded-full whitespace-nowrap font-medium">Half-Yearly</button>
+<button class="px-6 py-2 rounded-full text-gray-700 !rounded-full whitespace-nowrap font-medium">Yearly</button>
+</div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Netflix Card -->
+<div class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 subscription-card">
+<div class="p-6 border-b">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center mr-3">
+<i class="ri-netflix-fill ri-2x text-red-600"></i>
+</div>
+<h3 class="text-xl font-semibold">Netflix</h3>
+</div>
+<span class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">Most Popular</span>
+</div>
+<div class="flex items-baseline mb-2">
+<span class="text-3xl font-bold">$5.99</span>
+<span class="text-gray-500 ml-2">/month</span>
+</div>
+<p class="text-gray-600 text-sm">Regular price: $19.99</p>
+</div>
+<div class="p-6">
+<ul class="space-y-3 mb-6">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">4K Ultra HD Streaming</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Watch on 4 screens simultaneously</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Ad-free experience</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Unlimited movies and TV shows</span>
+</li>
+</ul>
+<a href="#" class="block w-full bg-primary text-white text-center py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Subscribe Now</a>
+</div>
+</div>
+<!-- Amazon Prime Card -->
+<div class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 subscription-card">
+<div class="p-6 border-b">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center mr-3">
+<i class="ri-amazon-fill ri-2x text-blue-600"></i>
+</div>
+<h3 class="text-xl font-semibold">Amazon Prime</h3>
+</div>
+<span class="bg-blue-100 text-blue-600 text-sm font-medium px-3 py-1 rounded-full">Best Value</span>
+</div>
+<div class="flex items-baseline mb-2">
+<span class="text-3xl font-bold">$4.99</span>
+<span class="text-gray-500 ml-2">/month</span>
+</div>
+<p class="text-gray-600 text-sm">Regular price: $14.99</p>
+</div>
+<div class="p-6">
+<ul class="space-y-3 mb-6">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Prime Video streaming</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Watch on 3 devices simultaneously</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">HD and 4K UHD streaming</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Exclusive Prime Originals</span>
+</li>
+</ul>
+<a href="#" class="block w-full bg-primary text-white text-center py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Subscribe Now</a>
+</div>
+</div>
+<!-- YouTube Premium Card -->
+<div class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 subscription-card">
+<div class="p-6 border-b">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center mr-3">
+<i class="ri-youtube-fill ri-2x text-red-500"></i>
+</div>
+<h3 class="text-xl font-semibold">YouTube Premium</h3>
+</div>
+</div>
+<div class="flex items-baseline mb-2">
+<span class="text-3xl font-bold">$3.99</span>
+<span class="text-gray-500 ml-2">/month</span>
+</div>
+<p class="text-gray-600 text-sm">Regular price: $11.99</p>
+</div>
+<div class="p-6">
+<ul class="space-y-3 mb-6">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Ad-free YouTube experience</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Background play on mobile</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">YouTube Music Premium included</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-700">Download videos for offline viewing</span>
+</li>
+</ul>
+<a href="#" class="block w-full bg-primary text-white text-center py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Subscribe Now</a>
+</div>
+</div>
+</div>
+<div class="text-center mt-10">
+<a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+View all subscription plans
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Special Offers -->
+<section class="py-16">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Special Offers</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm font-medium">Limited Time</div>
+<h3 class="text-2xl font-bold mb-3">Bundle & Save 30%</h3>
+<p class="text-gray-700 mb-6">Get Netflix + Amazon Prime + YouTube Premium bundle and save 30% compared to individual subscriptions.</p>
+<div class="flex items-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center mr-2">
+<i class="ri-netflix-fill ri-xl text-red-600"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center mx-2">
+<i class="ri-add-line ri-xl text-gray-400"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center mx-2">
+<i class="ri-amazon-fill ri-xl text-blue-600"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center mx-2">
+<i class="ri-add-line ri-xl text-gray-400"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center ml-2">
+<i class="ri-youtube-fill ri-xl text-red-500"></i>
+</div>
+</div>
+<div class="flex items-baseline mb-6">
+<span class="text-3xl font-bold">$12.99</span>
+<span class="text-gray-500 ml-2">/month</span>
+<span class="ml-3 line-through text-gray-500">$18.97</span>
+</div>
+<a href="#" class="inline-block bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Get This Bundle</a>
+</div>
+<div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 text-sm font-medium">New Users</div>
+<h3 class="text-2xl font-bold mb-3">First Month 50% Off</h3>
+<p class="text-gray-700 mb-6">New customers get 50% off on their first month subscription to any platform of their choice.</p>
+<div class="grid grid-cols-5 gap-4 mb-6">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-netflix-fill text-red-600"></i>
+</div>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-amazon-fill text-blue-600"></i>
+</div>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-youtube-fill text-red-500"></i>
+</div>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-tv-fill text-purple-600"></i>
+</div>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-tv-2-fill text-green-600"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center mb-6">
+<div class="bg-white px-3 py-1 rounded-full text-sm font-medium text-blue-600 mr-2">NEWUSER50</div>
+<span class="text-gray-600 text-sm">Use this code at checkout</span>
+</div>
+<a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Claim Offer</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Reviews -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white p-6 rounded-lg shadow-sm">
+<div class="flex text-yellow-400 mb-4">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6">"I've been using SBM for 6 months now for my Netflix subscription. The service is reliable, and I'm saving a lot compared to the regular price. Customer support is also very responsive."</p>
+<div class="flex items-center">
+<div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+<div class="w-6 h-6 flex items-center justify-center text-gray-500">
+<i class="ri-user-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium">Robert Johnson</h4>
+<p class="text-gray-500 text-sm">Netflix Subscriber</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-sm">
+<div class="flex text-yellow-400 mb-4">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-half-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6">"The bundle offer for Netflix and Amazon Prime is amazing! Setup was quick and I received my login details within minutes. Definitely recommend SBM for anyone looking to save on streaming services."</p>
+<div class="flex items-center">
+<div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+<div class="w-6 h-6 flex items-center justify-center text-gray-500">
+<i class="ri-user-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium">Emily Richardson</h4>
+<p class="text-gray-500 text-sm">Bundle Subscriber</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-sm">
+<div class="flex text-yellow-400 mb-4">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6">"I was skeptical at first, but after trying their YouTube Premium subscription, I'm completely satisfied. The price is unbeatable and the service works flawlessly. Will definitely renew my subscription."</p>
+<div class="flex items-center">
+<div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+<div class="w-6 h-6 flex items-center justify-center text-gray-500">
+<i class="ri-user-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium">Michael Thompson</h4>
+<p class="text-gray-500 text-sm">YouTube Premium User</p>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-10">
+<a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+Read more customer reviews
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-16">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+<div class="max-w-3xl mx-auto space-y-6">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<button class="flex items-center justify-between w-full p-6 text-left font-medium text-gray-900 focus:outline-none">
+<span>How does SBM subscription service work?</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="px-6 pb-6">
+<p class="text-gray-700">SBM provides premium streaming subscriptions at discounted rates. After you select a plan and complete payment, we'll send you login credentials within 30 minutes. You can then access the streaming service directly through their official apps or websites.</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<button class="flex items-center justify-between w-full p-6 text-left font-medium text-gray-900 focus:outline-none">
+<span>Are these official subscriptions?</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="hidden">
+<div class="px-6 pb-6">
+<p class="text-gray-700">Yes, all our subscriptions provide access to official platforms. You'll be able to use the official apps and websites with full functionality. We're able to offer discounted rates through bulk purchasing and regional pricing advantages.</p>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<button class="flex items-center justify-between w-full p-6 text-left font-medium text-gray-900 focus:outline-none">
+<span>What payment methods do you accept?</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="hidden">
+<div class="px-6 pb-6">
+<p class="text-gray-700">We accept various payment methods including credit/debit cards, mobile banking, bKash, Nagad, and other local payment options. After selecting your subscription, you'll see all available payment options at checkout.</p>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<button class="flex items-center justify-between w-full p-6 text-left font-medium text-gray-900 focus:outline-none">
+<span>How long does it take to receive login details?</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="hidden">
+<div class="px-6 pb-6">
+<p class="text-gray-700">You'll receive your login credentials within 30 minutes after your payment is confirmed. In most cases, we deliver credentials much faster, often within 5-10 minutes. You'll receive them via email and WhatsApp.</p>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<button class="flex items-center justify-between w-full p-6 text-left font-medium text-gray-900 focus:outline-none">
+<span>What if I have issues with my subscription?</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-add-line"></i>
+</div>
+</button>
+<div class="hidden">
+<div class="px-6 pb-6">
+<p class="text-gray-700">We provide 24/7 customer support. If you experience any issues with your subscription, simply contact us via WhatsApp or email, and our support team will resolve your issue promptly. We guarantee service availability throughout your subscription period.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-10">
+<a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+View all FAQs
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="md:flex">
+<div class="md:w-1/2 p-8">
+<h2 class="text-2xl font-bold mb-6">Contact Us</h2>
+<p class="text-gray-600 mb-8">Have questions or need assistance? Reach out to our support team and we'll get back to you as soon as possible.</p>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-whatsapp-line"></i>
+</div>
+</div>
+<div>
+<h3 class="font-medium mb-1">WhatsApp</h3>
+<p class="text-gray-600">+880 1743-439036</p>
+<a href="https://wa.me/8801743439036" class="text-primary text-sm hover:underline">Message us on WhatsApp</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-mail-line"></i>
+</div>
+</div>
+<div>
+<h3 class="font-medium mb-1">Email</h3>
+<p class="text-gray-600">support@sbm.com</p>
+<a href="#" class="text-primary text-sm hover:underline">Send us an email</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-facebook-fill"></i>
+</div>
+</div>
+<div>
+<h3 class="font-medium mb-1">Facebook</h3>
+<p class="text-gray-600">@subscriptionbdmovie</p>
+<a href="#" class="text-primary text-sm hover:underline">Visit our Facebook page</a>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 p-8 bg-gray-50">
+<h3 class="text-xl font-semibold mb-6">Send us a message</h3>
+<form>
+<div class="mb-4">
+<label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
+<input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="Enter your name">
+</div>
+<div class="mb-4">
+<label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="Enter your email">
+</div>
+<div class="mb-4">
+<label for="subject" class="block text-gray-700 text-sm font-medium mb-2">Subject</label>
+<input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="Enter subject">
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
+<textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="Enter your message"></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Send Message</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
+<div class="container mx-auto px-4">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+<p class="text-gray-700 mb-8">Subscribe to our newsletter for exclusive offers, discounts, and updates on new streaming services.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+<input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+<button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-all">Subscribe</button>
+</form>
+<p class="text-gray-500 text-sm mt-4">By subscribing, you agree to receive marketing emails from us. You can unsubscribe at any time.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-4 gap-8 mb-12">
+<div>
+<img src="logo-no-background.png" alt="SBM Logo" class="h-10 mb-6">
+<p class="text-gray-400 mb-6">Premium streaming subscriptions at unbeatable prices. Access your favorite content for less.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-youtube-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Subscriptions</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Special Offers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Streaming Services</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white">Netflix</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Amazon Prime</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">YouTube Premium</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Hoichoi</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Binge</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">View All Services</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Support</h3>
+<ul class="space-y-4">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-0.5 mr-3">
+<i class="ri-whatsapp-line"></i>
+</div>
+<span class="text-gray-400">+880 1743 439036</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-0.5 mr-3">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-400">support@sbm.com</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400 mt-0.5 mr-3">
+<i class="ri-time-line"></i>
+</div>
+<span class="text-gray-400">24/7 Customer Support</span>
+</li>
+</ul>
+<div class="mt-6">
+<h4 class="text-sm font-medium text-gray-400 mb-3">We Accept</h4>
+<div class="flex space-x-3">
+<div class="w-10 h-6 bg-white rounded flex items-center justify-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-visa-fill text-blue-600"></i>
+</div>
+</div>
+<div class="w-10 h-6 bg-white rounded flex items-center justify-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-mastercard-fill text-red-500"></i>
+</div>
+</div>
+<div class="w-10 h-6 bg-white rounded flex items-center justify-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-paypal-fill text-blue-700"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2025 Subscription BD Movie. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm">Refund Policy</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+<a href="https://wa.me/8801743439036" target="_blank" class="bg-[#25D366] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-whatsapp-fill ri-lg"></i>
+</div>
+</a>
+<a href="https://facebook.com/subscriptionbdmovie" target="_blank" class="bg-[#1877F2] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Hero Slider
+const slider = {
+    container: document.querySelector('.slides'),
+    slides: document.querySelectorAll('.slide'),
+    dots: document.querySelectorAll('.slider-dot'),
+    currentSlide: 0,
+    slideWidth: 100,
+    autoPlayInterval: 5000,
+    autoPlayTimer: null,
+    init() {
+        this.updateDots();
+        this.startAutoPlay();
+        this.setupDotClickHandlers();
+    },
+    goToSlide(index) {
+        this.currentSlide = index;
+        this.container.style.transform = `translateX(-${index * this.slideWidth}%)`;
+        this.updateDots();
+        this.resetAutoPlay();
+    },
+    updateDots() {
+        this.dots.forEach((dot, index) => {
+            if (index === this.currentSlide) {
+                dot.classList.add('bg-white');
+                dot.classList.remove('bg-white/50');
+            } else {
+                dot.classList.remove('bg-white');
+                dot.classList.add('bg-white/50');
+            }
+        });
+    },
+    setupDotClickHandlers() {
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
+        });
+    },
+    startAutoPlay() {
+        this.autoPlayTimer = setInterval(() => {
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+            this.goToSlide(this.currentSlide);
+        }, this.autoPlayInterval);
+    },
+    resetAutoPlay() {
+        clearInterval(this.autoPlayTimer);
+        this.startAutoPlay();
+    }
+};
+slider.init();
+// FAQ Accordion
+const faqButtons = document.querySelectorAll('.bg-white.rounded-lg.shadow-sm.overflow-hidden button');
+faqButtons.forEach(button => {
+button.addEventListener('click', function() {
+const content = this.nextElementSibling;
+const icon = this.querySelector('i');
+if (content.classList.contains('hidden')) {
+content.classList.remove('hidden');
+icon.classList.remove('ri-add-line');
+icon.classList.add('ri-subtract-line');
+} else {
+content.classList.add('hidden');
+icon.classList.remove('ri-subtract-line');
+icon.classList.add('ri-add-line');
+}
+});
+});
+});
+</script>
+</body>
+</html>
